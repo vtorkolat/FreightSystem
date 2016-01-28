@@ -1,22 +1,28 @@
 package com.frightsystem.model;
 
 
-public class Order {
-    private int id;
-    private String STATUS; // "ACTIVE", "PERFORMING"; "DONE"
-    private String description;
-    private double price;
+import com.frightsystem.enumerations.Status;
 
-    public int getOrder (){
+public class Order  {
+    private int id;
+    private static Status status;
+    private String description;
+    private float price;
+
+    public int getId() {
         return id;
     }
 
-    public String getSTATUS() {
-        return STATUS;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setSTATUS(String STATUS) {
-        this.STATUS = STATUS;
+    public static Status getStatus() {
+        return status;
+    }
+
+    public static void setStatus(Status status) {
+        Order.status = status;
     }
 
     public String getDescription() {
@@ -27,11 +33,12 @@ public class Order {
         this.description = description;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
+
 }

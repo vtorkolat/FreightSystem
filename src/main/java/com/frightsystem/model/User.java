@@ -1,22 +1,20 @@
 package com.frightsystem.model;
 
 
+import com.frightsystem.enumerations.Role;
+
 public class User {
-    private int id=1;
+    private int id;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
-
-    public String getUser(int id) {
-        return email;
+    public int getId() {
+        return id;
     }
 
-    public User(String role, int id, String email, String password) {
-        this.role = role;
-        this.id = id+1;
-        this.email = email;
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -27,16 +25,21 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
+
+
 }

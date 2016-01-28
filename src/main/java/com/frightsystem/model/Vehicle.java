@@ -5,44 +5,48 @@ package com.frightsystem.model;
  */
 public class Vehicle {
     private int id;
-    private String carModel;
-    private String typeOfVehicle;
-    private double payload;
-    private double volume;
+    private String model;
+    private String type;
+    private float payload;
+    private float volume;
 
-    public String getVehicle (int id){
-        return carModel;
+    public int getId() {
+        return id;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public String getModel() {
+        return model;
     }
 
-    public String getTypeOfVehicle() {
-        return typeOfVehicle;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public void setTypeOfVehicle(String typeOfVehicle) {
-        this.typeOfVehicle = typeOfVehicle;
+    public String getType() {
+        return type;
     }
 
-    public double getPayload() {
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public float getPayload() {
         return payload;
     }
 
-    public void setPayload(double payload) {
+    public void setPayload(float payload) {
         this.payload = payload;
     }
 
-    public double getVolume() {
+    public float getVolume() {
         return volume;
     }
 
-    public void setVolume(double volume) {
+    public void setVolume(float volume) {
         this.volume = volume;
     }
 }
