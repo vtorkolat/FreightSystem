@@ -10,13 +10,20 @@ public class Cargo {
     private double weight;
     private double volume;
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getCargo (int id){
-        return type;
     }
 
     public String getDescription() {

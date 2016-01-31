@@ -1,13 +1,17 @@
 package com.frightsystem.model;
 
 
-import com.frightsystem.enumerations.Status;
+import com.frightsystem.model.enumerations.Status;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Order  {
     private int id;
-    private static Status status;
+    private Status status;
     private String description;
     private float price;
+    private Map<String, Cargo> cargo = new HashMap<>();
 
     public int getId() {
         return id;
@@ -17,12 +21,12 @@ public class Order  {
         this.id = id;
     }
 
-    public static Status getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public static void setStatus(Status status) {
-        Order.status = status;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getDescription() {
@@ -41,4 +45,11 @@ public class Order  {
         this.price = price;
     }
 
+    public Map<String, Cargo> getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Map<String, Cargo> cargo) {
+        this.cargo = cargo;
+    }
 }

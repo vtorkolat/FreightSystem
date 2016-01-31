@@ -1,12 +1,14 @@
 package com.frightsystem.model;
 
+import com.frightsystem.model.enumerations.VehicleType;
+
 /**
  * Created by JavaVadim on 24.01.2016.
  */
 public class Vehicle {
     private int id;
     private String model;
-    private String type;
+    private VehicleType type;
     private float payload;
     private float volume;
 
@@ -26,11 +28,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public String getType() {
+    public VehicleType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(VehicleType type) {
         this.type = type;
     }
 
