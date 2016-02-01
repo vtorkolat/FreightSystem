@@ -2,6 +2,7 @@ package com.frightsystem.model;
 
 import com.frightsystem.model.enumerations.Role;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,13 @@ public class User {
     private int id;
     private String email;
     private String password;
+    private String name;
+    private String surname;
+    private String thirdname;
+    private String skype;
+    private short phoneNumder;
+    private Date dateOfBirth;
+
 
     public int getId() {
         return id;

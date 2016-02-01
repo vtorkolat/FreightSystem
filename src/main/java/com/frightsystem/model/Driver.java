@@ -8,33 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Driver extends User{
-    User driver = new User();
-    private int id;
     private Status status;
     private String description;
-    private float price;
+    private String companyName;
     private ActivityField activityField;
     private String numberLicense;
     private Date licenseIssueDate;
     private Map<String, Vehicle> vehicles = new HashMap<>();
-
-    public User getDriver() {
-        return driver;
-    }
-
-    public void setDriver(User driver) {
-        this.driver = driver;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Status getStatus() {
         return status;
@@ -50,14 +30,6 @@ public class Driver extends User{
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public ActivityField getActivityField() {

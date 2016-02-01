@@ -4,9 +4,6 @@ import com.frightsystem.model.Vehicle;
 
 import java.util.List;
 
-/**
- * Created by JavaVadim on 27.01.2016.
- */
 public interface VehicleDao {
 
     public Vehicle create();

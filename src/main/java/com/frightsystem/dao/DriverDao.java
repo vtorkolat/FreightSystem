@@ -4,9 +4,7 @@ import com.frightsystem.model.Driver;
 
 import java.util.List;
 
-/**
- * Created by JavaVadim on 31.01.2016.
- */
+
 public interface DriverDao {
 
     public Driver create();

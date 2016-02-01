@@ -20,8 +20,6 @@ public enum ActivityField {
 
     @Override
     public String toString() {
-        return "ActivityField{" +
-                "activityField='" + activityField + '\'' +
-                '}';
+        return activityField;
     }
 }
