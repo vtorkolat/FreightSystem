@@ -9,11 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
 public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
-
+    List<Customer> customers = new ArrayList<>();
+    Statement statement = null;
 
     @Override
     public Customer create() {

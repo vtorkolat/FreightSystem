@@ -3,12 +3,15 @@ package com.frightsystem.dao.jdbc;
 import com.frightsystem.dao.VehicleDao;
 import com.frightsystem.model.Vehicle;
 
+import javax.ejb.Stateless;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by JavaVadim on 01.02.2016.
- */
+@Stateless
 public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
+    List<Vehicle> vehicles = new ArrayList<>();
+    Statement statement = null;
 
     @Override
     public Vehicle create() {

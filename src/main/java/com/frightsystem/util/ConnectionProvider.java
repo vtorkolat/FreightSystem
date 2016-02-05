@@ -8,6 +8,7 @@ import java.sql.Connection;
 @Startup
 public class ConnectionProvider {
     private Connection connection;
+
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";

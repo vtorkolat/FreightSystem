@@ -3,12 +3,16 @@ package com.frightsystem.dao.jdbc;
 import com.frightsystem.dao.DriverDao;
 import com.frightsystem.model.Driver;
 
+import javax.ejb.Stateless;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by JavaVadim on 01.02.2016.
- */
+@Stateless
 public class DriverJdbcDao extends AbstractJdbcDao implements DriverDao {
+    List<Driver> drivers = new ArrayList<>();
+    Statement statement = null;
+
     @Override
     public Driver create() {
         return null;
