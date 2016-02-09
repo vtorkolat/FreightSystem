@@ -9,16 +9,20 @@ public enum Status {
     DONE("DONE"),
     DEFAULT ("Default");
 
-    private String role;
+    private String status;
 
-    Status(String name) {
-        this.role = name;
+    Status(String status) {
+        this.status = status;
     }
 
-    @Override
+    public static Status fromString(String name) {
+        for (Status condition: Status.values()){
+         if (condition.status.equalsIgnoreCase(name))return condition;
+        }
+        return ACTIVE;
+    }
+
     public String toString() {
-        return "Status{" +
-                "role='" + role + '\'' +
-                '}';
+        return status;
     }
 }

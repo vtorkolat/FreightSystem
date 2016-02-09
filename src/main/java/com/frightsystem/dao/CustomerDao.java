@@ -1,14 +1,13 @@
 package com.frightsystem.dao;
 
-
-
+import com.frightsystem.exceptions.DuplicateUserException;
 import com.frightsystem.model.Customer;
 
 import java.util.List;
 
 public interface CustomerDao {
 
-    public Customer create();
+    public Customer create() throws DuplicateUserException;
 
     public Customer read(int id);
 

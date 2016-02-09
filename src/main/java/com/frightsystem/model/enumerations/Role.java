@@ -2,20 +2,24 @@ package com.frightsystem.model.enumerations;
 
 
 public enum Role {
-    DRIVER("Driver"),
-    CUSTOMER("Customer"),
-    DEFAULT ("Default");
+    CUSTOMER("customer"),
+    OWNER("owner"),
+    ADMINISTRATOR("administrator");
 
-    private String role;
+    String name;
 
-    Role(String role) {
-        this.role = role;
+    Role(String name){
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "role='" + role + '\'' +
-                '}';
+    public static Role fromString(String name) {
+        for (Role role: Role.values()){
+            if(role.name.equalsIgnoreCase(name)) return role;
+        }
+        return CUSTOMER;
+    }
+
+    public String toString(){
+        return name;
     }
 }

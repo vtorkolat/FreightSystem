@@ -1,5 +1,6 @@
 package com.frightsystem.dao;
 
+import com.frightsystem.exceptions.DuplicateUserException;
 import com.frightsystem.model.Driver;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public interface DriverDao {
 
-    public Driver create();
+    public Driver create() throws DuplicateUserException;
 
     public Driver read(int id);
 

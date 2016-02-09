@@ -6,7 +6,7 @@ package com.frightsystem.model.enumerations;
 public enum ActivityField {
     SALES("Торговля"),
     PRODUCTION("Произвоство"),
-    AGRICULTURE("Сельское хозйство"),
+    AGRICULTURE("Сельское хозяйство"),
     SERVICES("Услуги"),
     TRUCKING("Грузоперевозки"),
     OTHER("Другое"),
@@ -18,7 +18,13 @@ public enum ActivityField {
         this.activityField = activityField;
     }
 
-    @Override
+    public static ActivityField fromString (String name){
+        for (ActivityField activity: ActivityField.values()){
+            if(activity.activityField.equalsIgnoreCase(name))return activity;
+        }
+        return SALES;
+    }
+
     public String toString() {
         return activityField;
     }

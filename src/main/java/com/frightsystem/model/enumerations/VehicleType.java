@@ -4,10 +4,10 @@ package com.frightsystem.model.enumerations;
  * Created by JavaVadim on 31.01.2016.
  */
 public enum VehicleType {
+    TIPPER ("Самосвал"),
     GLASSTRANSPORTERS("Стекловоз"),
     CISTERN("Цистерна"),
     EVACUATOR("Эвакуатор"),
-    TIPPER ("Самосвал"),
     DEFAULT ("Default");
 
     private String vehicleType;
@@ -16,11 +16,15 @@ public enum VehicleType {
         this.vehicleType = vehicleType;
     }
 
-    @Override
+    public static VehicleType fromString(String vehicleType) {
+        for (VehicleType type: VehicleType.values()){
+            if(type.vehicleType.equalsIgnoreCase(vehicleType)) return type;
+        }
+        return TIPPER;
+    }
+
     public String toString() {
-        return "VehicleType{" +
-                "name='" + vehicleType + '\'' +
-                '}';
+        return vehicleType;
     }
 }
 
