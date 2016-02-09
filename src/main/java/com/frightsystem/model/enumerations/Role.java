@@ -3,8 +3,8 @@ package com.frightsystem.model.enumerations;
 
 public enum Role {
     CUSTOMER("customer"),
-    OWNER("owner"),
-    ADMINISTRATOR("administrator");
+    DRIVER("driver"),
+    DEFAULT ("Default");
 
     String name;
 
