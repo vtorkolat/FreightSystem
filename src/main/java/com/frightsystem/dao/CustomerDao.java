@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerDao {
 
-    public Customer create() throws DuplicateUserException;
+    public void create(Customer customer) throws DuplicateUserException;
 
     public Customer read(int id);
 
