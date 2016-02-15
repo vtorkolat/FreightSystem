@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class Customer extends User  {
 
+
     private Map<String, Order> orders = new HashMap<>();
 
     public Map<String, Order> getOrders() {

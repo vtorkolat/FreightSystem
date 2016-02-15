@@ -10,6 +10,10 @@ import java.util.List;
 
 @Stateless
 public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
+
     List<Vehicle> vehicles = new ArrayList<>();
     Statement statement = null;
 

@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface CustomerDao {
 
-    public void create(Customer customer) throws DuplicateUserException;
+    public Customer create(Customer customer) throws DuplicateUserException;
 
     public Customer read(int id);
 
-    public void update(Customer customer);
+    public boolean update(Customer customer);
 
-    public void delete(Customer customer);
+    public boolean delete(Customer customer);
 
     public List<Customer> getAll();
 }

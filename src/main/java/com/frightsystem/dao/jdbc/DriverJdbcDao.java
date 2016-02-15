@@ -10,6 +10,10 @@ import java.util.List;
 
 @Stateless
 public class DriverJdbcDao extends AbstractJdbcDao implements DriverDao {
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
+    
     List<Driver> drivers = new ArrayList<>();
     Statement statement = null;
 
