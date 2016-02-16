@@ -3,3 +3,9 @@
 
 # folder
 target.
+
+# folder .target
+target/
+
+# file
+*.iml

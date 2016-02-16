@@ -23,7 +23,7 @@ public class ConnectionProvider {
             System.out.println("Can't connect to the DB");
             e.printStackTrace();
         }
-String sql = "CREATE table user if not exist, WHERE id = ?";
+String sql = "Create table user if not exist, where id = ?";
         Statement statement= connection.createStatement();
         statement.execute(sql);
     }

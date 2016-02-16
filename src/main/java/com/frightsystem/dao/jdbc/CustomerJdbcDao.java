@@ -15,16 +15,13 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
     private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
-    private static final String SQL_INSERT = "INSERT INTO users(id, surname, name, thirdname, role, email, password, dateOfBirth, skype, phonenumder) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO users(id, surname, name, thirdname, role, email, password, date_of_birth, skype, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_SELECT_ALL = "SELECT * FROM USERS WHERE role='customer'";
 
-
     private static final String DUPLICATE_USER_MSG = "User with name {0} already exists";
-
     private static final String CREATE_USER_QUERY =
             "INSERT INTO \"user\" (name, surname) " +
                     "VALUES (?, ?)";
-
     private static final String READ_USER_BY_ID_QUERY =
             "SELECT * " +
                     "FROM \"user\" " +
@@ -59,12 +56,36 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
     }
 
     @Override
-    public void update(Customer customer) {    }
+    public boolean update(Customer customer) {    }
 
     @Override
-    public void delete(Customer customer) {    }
+    public boolean delete(Customer customer) {    }
+
     @Override
     public List<Customer> getAll() {
-        return null;
+        List<Customer> customers = new ArrayList<>();
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD)){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+
+            Customer cstmr = null;
+            while (resultSet.next()){
+                cstmr=new Customer();
+                cstmr.setId(resultSet.getInt("id"));
+                cstmr.setSurname(resultSet.getString("surname"));
+                cstmr.setName(resultSet.getString("name"));
+                cstmr.setThirdname(resultSet.getString("thirdname"));
+                cstmr.setRole(resultSet.getString("role"));    // проверить работает ли метод setRole
+                cstmr.setEmail(resultSet.getString("email"));
+                cstmr.setPassword(resultSet.getString("password"));
+                cstmr.setDateOfBirth(resultSet.getDate("date_of_birth"));
+                cstmr.setSkype(resultSet.getString("skype"));
+                cstmr.setPhoneNumder(resultSet.getShort("phone_number"));
+                 customers.add(cstmr);          }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
     }
 }

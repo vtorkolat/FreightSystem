@@ -13,7 +13,9 @@ import java.sql.Statement;
 @Stateless
 public abstract class AbstractJdbcDao {
     protected Connection connection;
-
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
     private ConnectionProvider connectionProvider;
 
     public void init() {
