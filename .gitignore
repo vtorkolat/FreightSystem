@@ -2,7 +2,7 @@
 .idea/
 
 # folder .target
-target
+.target/
 
 # file
-FreightSystem/*.iml
+FreightSystem.iml
