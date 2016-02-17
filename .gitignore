@@ -1,8 +1,14 @@
 # folder .idea
 .idea/
-
-# folder .target
+bin/
 target/
-
-# file
-d:/JAVA/becomejavasenior/FreightSystem/FreightSystem.iml
+build/
+RemoteSystemsTempFiles/
+logs/
+.settings/
+.metadata/
+.classpath
+.project
+*.class
+*.war
+.gitignore~
