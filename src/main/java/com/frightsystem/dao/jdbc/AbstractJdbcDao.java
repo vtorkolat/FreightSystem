@@ -3,12 +3,8 @@ package com.frightsystem.dao.jdbc;
 import com.frightsystem.exceptions.CloseStatementException;
 import com.frightsystem.util.ConnectionProvider;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @Stateless
 public abstract class AbstractJdbcDao {
@@ -18,9 +14,12 @@ public abstract class AbstractJdbcDao {
     private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
     private ConnectionProvider connectionProvider;
 
-    public void init() {
-        connection = connectionProvider.getConnection();
-
+    public static Connection init() {
+        try {Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     protected PreparedStatement getPreparedStatement(String query) throws SQLException {

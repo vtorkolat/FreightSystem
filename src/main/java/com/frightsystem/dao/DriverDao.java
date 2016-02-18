@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DriverDao {
 
-    public Driver create() throws DuplicateUserException;
+    public Driver create(Driver driver ) throws DuplicateUserException;
 
     public Driver read(int id);
 
