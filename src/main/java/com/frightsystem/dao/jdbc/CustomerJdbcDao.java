@@ -1,6 +1,7 @@
 package com.frightsystem.dao.jdbc;
 
 import com.frightsystem.dao.CustomerDao;
+import com.frightsystem.exceptions.DuplicateUserException;
 import com.frightsystem.model.Customer;
 
 import javax.ejb.Stateless;
@@ -17,6 +18,8 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
     private static final String SQL_SELECT_ALL = "SELECT * FROM USERS WHERE role='customer'";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_UPDATE_BY_ID = "UPDATE users SET id = ?, surname = ?, name = ?, thirdname = ?, role = ?, email = ?, password = ?, date_of_birth = ?, skype = ?, phone_number = ?";
+    private static final String SQL_DELETE_BY_ID = "DELETE users WHERE id = ?";
+
     private static final String DUPLICATE_USER_MSG = "User with name {0} already exists";
     private static final String CREATE_USER_QUERY =
             "INSERT INTO \"user\" (name, surname) " +
@@ -25,11 +28,9 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
             "SELECT * " +
                     "FROM \"user\" " +
                     "WHERE id = ?";
-    // List<Customer> customers = new ArrayList<>();
-    //  Statement statement = null;
 
     @Override
-    public Customer create(Customer customer) {
+    public Customer create(Customer customer) throws DuplicateUserException {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement statement = connection.createStatement();
             PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
@@ -90,7 +91,7 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
             ps.setString(8, String.valueOf(customer.getDateOfBirth()));
             ps.setString(9, customer.getSkype());
             ps.setLong(10, customer.getPhoneNumder());
-            if (ps.executeUpdate() == 1) return true;
+            return ps.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,6 +100,13 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
 
     @Override
     public boolean delete(Customer customer) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement ps = connection.prepareStatement(SQL_DELETE_BY_ID);
+            ps.setInt(1, customer.getId());
+            return ps.executeUpdate() == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
