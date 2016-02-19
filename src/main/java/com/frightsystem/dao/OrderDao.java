@@ -11,9 +11,9 @@ public interface OrderDao {
 
     public Order read(int id);
 
-    public void update(Order order);
+    public boolean update(Order order);
 
-    public void delete(Order order);
+    public boolean delete(Order order);
 
     public List<Order> getAll();
 

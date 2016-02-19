@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface VehicleDao {
 
-    public Vehicle create();
+    public Vehicle create(Vehicle vehicle);
 
     public Vehicle read(int id);
 
-    public void update(Vehicle vehicle);
+    public boolean update(Vehicle vehicle);
 
-    public void delete(Vehicle vehicle);
+    public boolean delete(Vehicle vehicle);
 
     public List<Vehicle> getAll();
 }

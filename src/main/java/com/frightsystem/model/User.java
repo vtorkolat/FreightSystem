@@ -3,8 +3,6 @@ package com.frightsystem.model;
 import com.frightsystem.model.enumerations.Role;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class User {
     private int id;
@@ -55,7 +53,7 @@ public class User {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.role = Role.fromString(role);
     }
 
     public String getSkype() {

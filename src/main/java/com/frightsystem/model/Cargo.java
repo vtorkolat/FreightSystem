@@ -7,8 +7,8 @@ public class Cargo {
     private int Id;
     private String type;
     private String description;
-    private double weight;
-    private double volume;
+    private float weight;
+    private float volume;
 
     public int getId() {
         return Id;
@@ -34,19 +34,19 @@ public class Cargo {
         this.description = description;
     }
 
-    public double getWeight() {
+    public float getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
-    public double getVolume() {
+    public float getVolume() {
         return volume;
     }
 
-    public void setVolume(double volume) {
+    public void setVolume(float volume) {
         this.volume = volume;
     }
 }

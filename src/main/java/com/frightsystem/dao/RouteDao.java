@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface RouteDao {
 
-    public Route create();
+    public Route create(Route route);
 
     public Route read(int id);
 
-    public void update(Route route);
+    public boolean update(Route route);
 
-    public void delete(Route route);
+    public boolean delete(Route route);
 
     public List<Route> getAll();
 }

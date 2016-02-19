@@ -3,6 +3,7 @@ package com.frightsystem.dao.jdbc;
 import com.frightsystem.dao.CustomerDao;
 import com.frightsystem.exceptions.DuplicateUserException;
 import com.frightsystem.model.Customer;
+import com.frightsystem.model.enumerations.Role;
 
 import javax.ejb.Stateless;
 import java.sql.*;
@@ -15,10 +16,10 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
     private static final String PASSWORD = "postgres";
     private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
     private static final String SQL_INSERT = "INSERT INTO users(id, surname, name, thirdname, role, email, password, date_of_birth, skype, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    private static final String SQL_SELECT_ALL = "SELECT * FROM USERS WHERE role='customer'";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_UPDATE_BY_ID = "UPDATE users SET id = ?, surname = ?, name = ?, thirdname = ?, role = ?, email = ?, password = ?, date_of_birth = ?, skype = ?, phone_number = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE users WHERE id = ?";
+    private static final String SQL_SELECT_ALL = "SELECT * FROM users WHERE role='customer'";
 
     private static final String DUPLICATE_USER_MSG = "User with name {0} already exists";
     private static final String CREATE_USER_QUERY =
@@ -64,7 +65,7 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
                 cstmr.setSurname(resultSet.getString("surname"));
                 cstmr.setName(resultSet.getString("name"));
                 cstmr.setThirdname(resultSet.getString("thirdname"));
-                cstmr.setRole(resultSet.getString("role"));    // проверить работает ли метод setRole
+                cstmr.setRole(String.valueOf(Role.fromString(resultSet.getString("role"))));    // проверить работает ли метод setRole
                 cstmr.setEmail(resultSet.getString("email"));
                 cstmr.setPassword(resultSet.getString("password"));
                 cstmr.setDateOfBirth(resultSet.getDate("date_of_birth"));
