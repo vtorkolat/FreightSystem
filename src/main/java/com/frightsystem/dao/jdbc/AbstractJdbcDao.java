@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import java.sql.*;
 
 @Stateless
-public abstract class AbstractJdbcDao {
+public class AbstractJdbcDao {
     protected Connection connection;
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
@@ -31,8 +31,7 @@ public abstract class AbstractJdbcDao {
     }
 
     public void closeStatement(Statement statement) {
-        try {
-            if (statement != null) {
+        try {if (statement != null) {
                 statement.close();
             }
         } catch (SQLException e) {

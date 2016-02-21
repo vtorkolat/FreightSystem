@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class CargoJdbcDao extends AbstractJdbcDao  implements CargoDao  {
+public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
     private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
@@ -20,37 +20,55 @@ public class CargoJdbcDao extends AbstractJdbcDao  implements CargoDao  {
     private static final String SQL_SELECT_ALL = "SELECT * FROM cargo";
 
     @Override
-    public Cargo create(Cargo cargo){
-    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
-        Statement statement = connection.createStatement();
-        PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
-        ps.setInt(1, cargo.getId());
-        ps.setString(2, cargo.getType());
-        ps.setString(3, cargo.getDescription());
-        ps.setFloat(4, cargo.getWeight());
-        ps.setFloat(5, cargo.getVolume());
-        ps.executeUpdate();
-    } catch (SQLException e) {
-        e.printStackTrace();}
-    return cargo;
+    public Cargo create(Cargo cargo) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            Statement statement = connection.createStatement();
+            PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
+            ps.setInt(1, cargo.getId());
+            ps.setString(2, cargo.getType());
+            ps.setString(3, cargo.getDescription());
+            ps.setFloat(4, cargo.getWeight());
+            ps.setFloat(5, cargo.getVolume());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cargo;
     }
 
     @Override
     public Cargo read(int id) {
-        Cargo cargo=null;
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
-
+        Cargo cargo = null;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement ps = connection.prepareStatement(SQL_SELECT_BY_ID);
+            ResultSet rs = ps.executeQuery();
+            ps.setInt(1, id);
+            if (rs.next()) {
+                cargo.setId(rs.getInt("id"));
+                cargo.setType(rs.getString("type"));
+                cargo.setDescription(rs.getString("descriprion"));
+                cargo.setWeight(rs.getFloat("weight"));
+                cargo.setVolume(rs.getFloat("volume"));
+            }
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
         return cargo;
     }
 
     @Override
     public boolean update(Cargo cargo) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
-
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_BY_ID);
+            ps.setInt(1, cargo.getId());
+            ps.setString(2, cargo.getType());
+            ps.setString(3, cargo.getDescription());
+            ps.setFloat(4, cargo.getWeight());
+            ps.setFloat(5, cargo.getVolume());
+            return ps.executeUpdate() == 1;
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
         return false;
 
     }
@@ -60,7 +78,7 @@ public class CargoJdbcDao extends AbstractJdbcDao  implements CargoDao  {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             PreparedStatement ps = connection.prepareStatement(SQL_DELETE_BY_ID);
             ps.setInt(1, cargo.getId());
-            return   ps.executeUpdate()==1;
+            return ps.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,13 +91,17 @@ public class CargoJdbcDao extends AbstractJdbcDao  implements CargoDao  {
         List<Cargo> cargos = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+            ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
             Cargo cargo = null;
-            while (resultSet.next()) {
-
+            while (rs.next()) {
+                cargo.setId(rs.getInt("id"));
+                cargo.setType(rs.getString("type"));
+                cargo.setDescription(rs.getString("descriprion"));
+                cargo.setWeight(rs.getFloat("weight"));
+                cargo.setVolume(rs.getFloat("volume"));
                 cargos.add(cargo);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return cargos;

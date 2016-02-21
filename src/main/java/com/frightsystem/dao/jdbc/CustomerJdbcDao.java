@@ -58,19 +58,19 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
                 cstmr = new Customer();
-                cstmr.setId(resultSet.getInt("id"));
-                cstmr.setSurname(resultSet.getString("surname"));
-                cstmr.setName(resultSet.getString("name"));
-                cstmr.setThirdname(resultSet.getString("thirdname"));
-                cstmr.setRole(String.valueOf(Role.fromString(resultSet.getString("role"))));    // проверить работает ли метод setRole
-                cstmr.setEmail(resultSet.getString("email"));
-                cstmr.setPassword(resultSet.getString("password"));
-                cstmr.setDateOfBirth(resultSet.getDate("date_of_birth"));
-                cstmr.setSkype(resultSet.getString("skype"));
-                cstmr.setPhoneNumder(resultSet.getShort("phone_number"));
+                cstmr.setId(rs.getInt("id"));
+                cstmr.setSurname(rs.getString("surname"));
+                cstmr.setName(rs.getString("name"));
+                cstmr.setThirdname(rs.getString("thirdname"));
+                cstmr.setRole(String.valueOf(Role.fromString(rs.getString("role"))));    // проверить работает ли метод setRole
+                cstmr.setEmail(rs.getString("email"));
+                cstmr.setPassword(rs.getString("password"));
+                cstmr.setDateOfBirth(rs.getDate("date_of_birth"));
+                cstmr.setSkype(rs.getString("skype"));
+                cstmr.setPhoneNumder(rs.getShort("phone_number"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

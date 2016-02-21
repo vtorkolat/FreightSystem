@@ -12,9 +12,9 @@ public interface DriverDao {
 
     public Driver read(int id);
 
-    public void update(Driver driver);
+    public boolean update(Driver driver);
 
-    public void delete(Driver driver);
+    public boolean delete(Driver driver);
 
     public List<Driver> getAll();
 }

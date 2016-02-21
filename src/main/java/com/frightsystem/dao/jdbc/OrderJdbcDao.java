@@ -22,8 +22,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
     @Override
     public Order create(Order order) {
-        try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             Statement statement = connection.createStatement();
             PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
             ps.setInt(1, order.getId());
@@ -40,7 +39,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
     @Override
     public Order read(int id) {
         Order ord = null;
-        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);){
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
             PreparedStatement ps = connection.prepareStatement(SQL_SELECT_BY_ID);
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();

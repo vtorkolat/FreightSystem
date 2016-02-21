@@ -8,8 +8,8 @@ public class Route {
     private int id;
     private String loadingAdress;
     private String unloadingAdress;
-    private Date date;
-    private Time time;
+    private Date loadingDate;
+    private Time loadingTime;
 
     @Override
     public String toString() {
@@ -44,18 +44,18 @@ public class Route {
     }
 
     public Date getDate() {
-        return date;
+        return loadingDate;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.loadingDate = date;
     }
 
     public Time getTime() {
-        return time;
+        return loadingTime;
     }
 
     public void setTime(Time time) {
-        this.time = time;
+        this.loadingTime = time;
     }
 }

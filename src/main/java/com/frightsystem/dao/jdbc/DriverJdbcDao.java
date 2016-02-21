@@ -20,7 +20,7 @@ public class DriverJdbcDao extends AbstractJdbcDao implements DriverDao {
 
     @Override
     public Driver create(Driver driver) {
-        try { Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);) {
             Statement statement = connection.createStatement();
             PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
             ps.setInt(1,driver.getId());
@@ -31,31 +31,32 @@ public class DriverJdbcDao extends AbstractJdbcDao implements DriverDao {
 
     @Override
     public Driver read(int id) {
-        try {AbstractJdbcDao.init();
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);) {
 
         }catch (SQLException e){e.printStackTrace();}
         return null;
     }
 
     @Override
-    public void update(Driver driver) {
-        try {
+    public boolean update(Driver driver) {
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
         }catch (SQLException e){e.printStackTrace();}
-
+        return false;
     }
 
     @Override
-    public void delete(Driver driver) {
-        try {
+    public boolean delete(Driver driver) {
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
         }catch (SQLException e){e.printStackTrace();}
-
+        return false;
     }
 
     @Override
     public List<Driver> getAll() {
         List<Driver> drivers = new ArrayList<>();
-        try {
+        try ( Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+
         }catch (SQLException e){e.printStackTrace();}
-        return null;
+        return drivers;
     }
 }
