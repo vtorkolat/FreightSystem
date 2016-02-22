@@ -11,9 +11,7 @@ import java.util.List;
 
 @Stateless
 public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
-    private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
+
     private static final String SQL_INSERT = "INSERT INTO vehicle (id, model, type, playload, volume) VALUES (?,?,?,?,?)";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM vehicle WHERE id = ?";
     private static final String SQL_UPDATE_BY_ID = "UPDATE vehicle SET id = ?, model=?, type = ?, playload=?, volume=?";
@@ -21,30 +19,34 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
     private static final String SQL_SELECT_ALL = "SELECT * FROM vehicle";
 
 
+
     @Override
     public Vehicle create(Vehicle vehicle) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
-            Statement statement = connection.createStatement();
-            PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
+        PreparedStatement ps = null;
+        try { ps = getPreparedStatement(SQL_INSERT);
             ps.setInt(1, vehicle.getId());
             ps.setString(2, vehicle.getModel());
             ps.setString(3, String.valueOf(vehicle.getType()));
             ps.setFloat(4, vehicle.getPayload());
             ps.setFloat(5, vehicle.getVolume());
-            ps.executeUpdate();
+            int affectedRowsQua = ps.executeUpdate();
+            System.out.println("Affected rows quantity " + affectedRowsQua);
         } catch (SQLException e) {
             e.printStackTrace();}
+        finally {
+            closeStatement(ps);
+        }
         return vehicle;
     }
 
     @Override
     public Vehicle read(int id) {
-        Vehicle vehicle = null;
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
-            PreparedStatement ps = connection.prepareStatement(SQL_SELECT_BY_ID);
+        Vehicle vehicle = new Vehicle();
+        PreparedStatement ps=null;
+        try { ps=getPreparedStatement(SQL_SELECT_BY_ID);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()){
+            while (rs.next()){
                 vehicle.setId(rs.getInt("id"));
                 vehicle.setModel(rs.getString("model"));
                 vehicle.setType(VehicleType.fromString(rs.getString("type")));
@@ -53,13 +55,16 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();}
+        finally {
+            closeStatement(ps);
+        }
         return vehicle;
     }
 
     @Override
     public boolean update(Vehicle vehicle) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
-            PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_BY_ID);
+        PreparedStatement ps = null;
+        try {ps = getPreparedStatement(SQL_UPDATE_BY_ID);
             ps.setInt(1, vehicle.getId());
             ps.setString(2, vehicle.getModel());
             ps.setString(3, String.valueOf(vehicle.getType()));
@@ -67,18 +72,23 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
             ps.setFloat(5, vehicle.getVolume());
             return ps.executeUpdate()==1;
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        } finally {
+            closeStatement(ps);
+        }
         return false;
     }
 
     @Override
     public boolean delete(Vehicle vehicle) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            PreparedStatement ps = connection.prepareStatement(SQL_DELETE_BY_ID);
+        PreparedStatement ps = null;
+        try {ps = getPreparedStatement(SQL_DELETE_BY_ID);
             ps.setInt(1, vehicle.getId());
             return   ps.executeUpdate()==1;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(ps);
         }
         return false;
     }
@@ -86,8 +96,8 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
     @Override
     public List<Vehicle> getAll() {
         List<Vehicle> vehicles = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            Statement statement = connection.createStatement();
+        Statement statement = null;
+        try  {statement = getStatement();
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
             Vehicle vehicle = null;
             while (rs.next()) {
@@ -100,6 +110,8 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
             }
         }catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
         return vehicles;
     }

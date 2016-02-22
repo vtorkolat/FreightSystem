@@ -10,40 +10,43 @@ import java.util.List;
 
 @Stateless
 public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
-    private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
-    private static final String SQL_INSERT = "INSERT INTO route (id, loading_adress, unloading_adress, loading_date, loading_time) VALUES (?,?,?,?,?)";
+
+    private static final String SQL_INSERT = "INSERT INTO route (id, loading_adress, unloading_adress, loading_date, loading_time) " +
+                                             "VALUES (?,?,?,?,?)";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM route WHERE id = ?";
-    private static final String SQL_UPDATE_BY_ID = "UPDATE route SET id = ?,FreightSystem=?, unloading_adress = ?, loading_date=?,loading_time=? ";
+    private static final String SQL_UPDATE_BY_ID = "UPDATE route SET id = ?,FreightSystem=?, unloading_adress = ?, " +
+                                                   "loading_date=?,loading_time=? ";
     private static final String SQL_DELETE_BY_ID = "DELETE route WHERE id = ?";
     private static final String SQL_SELECT_ALL = "SELECT * FROM route";
 
     @Override
     public Route create(Route route) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            Statement statement = connection.createStatement();
-            PreparedStatement ps = connection.prepareStatement(SQL_INSERT);
+        PreparedStatement ps = null;
+        try { ps = getPreparedStatement(SQL_INSERT);
             ps.setInt(1, route.getId());
             ps.setString(2, route.getLoadingAdress());
             ps.setString(3, route.getUnloadingAdress());
             ps.setDate(4, (Date) route.getDate());
             ps.setTime(5, route.getTime());
-            ps.executeUpdate();
+
+            int affectedRowsQua= ps.executeUpdate();
+            System.out.println("Affected rows quantity "+affectedRowsQua );
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(ps);
         }
         return route;
     }
 
     @Override
     public Route read(int id) {
-        Route route = null;
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            PreparedStatement ps = connection.prepareStatement(SQL_SELECT_BY_ID);
+        Route route = new Route();
+        PreparedStatement ps = null;
+        try  {ps = getPreparedStatement(SQL_SELECT_BY_ID);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 route.setId(rs.getInt("id"));
                 route.setLoadingAdress(rs.getString("loading_adress"));
                 route.setUnloadingAdress(rs.getString("unloading_adress"));
@@ -52,14 +55,16 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(ps);
         }
         return route;
     }
 
     @Override
     public boolean update(Route route) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_BY_ID);
+        PreparedStatement ps = null;
+        try  {ps = getPreparedStatement(SQL_UPDATE_BY_ID);
             ps.setInt(1, route.getId());
             ps.setString(2, route.getLoadingAdress());
             ps.setString(3, route.getUnloadingAdress());
@@ -68,18 +73,22 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
             return ps.executeUpdate()==1;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(ps);
         }
         return false;
     }
 
     @Override
     public boolean delete(Route route) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            PreparedStatement ps = connection.prepareStatement(SQL_DELETE_BY_ID);
+        PreparedStatement ps = null;
+        try  {ps = getPreparedStatement(SQL_DELETE_BY_ID);
             ps.setInt(1, route.getId());
             return ps.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(ps);
         }
         return false;
     }
@@ -87,11 +96,12 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
     @Override
     public List<Route> getAll() {
         List<Route> routs = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
-            Route route = null;
+        Statement statement=null;
+        try  {statement = getStatement();
+              ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
+          
             while (rs.next()) {
+                Route route = new Route();
                 route.setId(rs.getInt("id"));
                 route.setLoadingAdress(rs.getString("loading_adress"));
                 route.setUnloadingAdress(rs.getString("unloading_adress"));
@@ -101,6 +111,8 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeStatement(statement);
         }
         return routs;
     }

@@ -1,6 +1,6 @@
-package com.frightsystem.dao.comand.impl;
+package com.frightsystem.dao.command.impl;
 
-import com.frightsystem.dao.comand.Command;
+import com.frightsystem.dao.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

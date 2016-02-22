@@ -9,17 +9,11 @@ import java.sql.*;
 @Stateless
 public class AbstractJdbcDao {
     protected Connection connection;
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
-    private static final String URL = "jdbc:postgresql://localhost:5432/FreightSystem";
+
     private ConnectionProvider connectionProvider;
 
-    public static Connection init() {
-        try {Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void init() {
+        connection = connectionProvider.getConnection();
     }
 
     protected PreparedStatement getPreparedStatement(String query) throws SQLException {
@@ -31,7 +25,8 @@ public class AbstractJdbcDao {
     }
 
     public void closeStatement(Statement statement) {
-        try {if (statement != null) {
+        try {
+            if (statement != null) {
                 statement.close();
             }
         } catch (SQLException e) {

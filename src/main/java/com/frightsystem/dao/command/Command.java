@@ -1,4 +1,4 @@
-package com.frightsystem.dao.comand;
+package com.frightsystem.dao.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
