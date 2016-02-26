@@ -22,6 +22,7 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
 
     @Override
     public Vehicle create(Vehicle vehicle) {
+        init();
         PreparedStatement ps = null;
         try { ps = getPreparedStatement(SQL_INSERT);
             ps.setInt(1, vehicle.getId());
@@ -41,6 +42,7 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
 
     @Override
     public Vehicle read(int id) {
+        init();
         Vehicle vehicle = new Vehicle();
         PreparedStatement ps=null;
         try { ps=getPreparedStatement(SQL_SELECT_BY_ID);
@@ -63,6 +65,7 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
 
     @Override
     public boolean update(Vehicle vehicle) {
+        init();
         PreparedStatement ps = null;
         try {ps = getPreparedStatement(SQL_UPDATE_BY_ID);
             ps.setInt(1, vehicle.getId());
@@ -81,6 +84,7 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
 
     @Override
     public boolean delete(Vehicle vehicle) {
+        init();
         PreparedStatement ps = null;
         try {ps = getPreparedStatement(SQL_DELETE_BY_ID);
             ps.setInt(1, vehicle.getId());
@@ -95,6 +99,7 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
 
     @Override
     public List<Vehicle> getAll() {
+        init();
         List<Vehicle> vehicles = new ArrayList<>();
         Statement statement = null;
         try  {statement = getStatement();

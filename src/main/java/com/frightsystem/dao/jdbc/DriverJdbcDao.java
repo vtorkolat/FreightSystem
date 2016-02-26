@@ -16,12 +16,12 @@ public class DriverJdbcDao extends AbstractJdbcDao implements DriverDao {
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_UPDATE_BY_ID = "UPDATE users SET id = ?, surname = ?, name = ?, thirdname = ?, role = ?, email = ?, password = ?, date_of_birth = ?, skype = ?, phone_number = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE users WHERE id = ?";
-    private static final String SQL_SELECT_ALL = "SELECT * FROM users WHERE role='customer'";
+    private static final String SQL_SELECT_ALL = "SELECT * FROM users WHERE role='driver'";
 
     private static final String DUPLICATE_USER_MSG = "User with name {0} already exists";
-    private static final String SQL_INSERT = "INSERT INTO users(id, " +
+  /* private static final String SQL_INSERT = "INSERT INTO users(id, " +
             "surname, name, thirdname, role, email, password, date_of_birth, " +
-            "skype, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            "skype, phone_number) VALUES (?,?,?,?,?,?,?,?,?,?)";*/
 
 
 

@@ -1,14 +1,13 @@
 package com.frightsystem.model;
 
 import com.frightsystem.model.enumerations.ActivityField;
-import com.frightsystem.model.enumerations.Status;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Driver extends User{
-    private Status status;
+
     private String description;
     private String companyName;
     private ActivityField activityField;
@@ -16,15 +15,7 @@ public class Driver extends User{
     private Date licenseIssueDate;
     private Map<String, Vehicle> vehicles = new HashMap<>();
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
+      public String getDescription() {
         return description;
     }
 

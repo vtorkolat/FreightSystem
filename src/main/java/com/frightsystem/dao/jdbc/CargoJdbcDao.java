@@ -20,6 +20,7 @@ public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
 
     @Override
     public Cargo create(Cargo cargo) {
+        init();
         PreparedStatement ps = null;
         try {
             ps = getPreparedStatement(SQL_INSERT);
@@ -41,6 +42,7 @@ public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
 
     @Override
     public Cargo read(int id) {
+        init();
         Cargo cargo = null;
         PreparedStatement ps = null;
         try {
@@ -64,6 +66,7 @@ public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
 
     @Override
     public boolean update(Cargo cargo) {
+        init();
         PreparedStatement ps = null;
         try {
             ps = getPreparedStatement(SQL_UPDATE_BY_ID);
@@ -84,6 +87,7 @@ public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
 
     @Override
     public boolean delete(Cargo cargo) {
+        init();
         PreparedStatement ps = null;
         try {
            ps= getPreparedStatement(SQL_DELETE_BY_ID);
@@ -99,6 +103,7 @@ public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
 
     @Override
     public List<Cargo> getAll() {
+        init();
         List<Cargo> cargos = new ArrayList<>();
         Statement statement = null;
         try  {

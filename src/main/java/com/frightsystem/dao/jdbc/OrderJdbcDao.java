@@ -21,6 +21,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
     @Override
     public Order create(Order order) {
+        init();
         PreparedStatement ps = null;
         try { ps = getPreparedStatement(SQL_INSERT);
             ps.setInt(1, order.getId());
@@ -40,6 +41,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
     @Override
     public Order read(int id) {
+        init();
         Order order = new Order();
         PreparedStatement ps = null;
         try { ps = getPreparedStatement(SQL_SELECT_BY_ID);
@@ -62,6 +64,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
     @Override
     public boolean update(Order order) {
+        init();
         PreparedStatement ps = null;
         try { ps = getPreparedStatement(SQL_UPDATE_BY_ID);
             ps.setInt(1, order.getId());
@@ -79,6 +82,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
     @Override
     public boolean delete(Order order) {
+        init();
         PreparedStatement ps = null;
         try {ps = getPreparedStatement(SQL_DELETE_BY_ID);
             ps.setInt(1, order.getId());
@@ -93,6 +97,7 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
     @Override
     public List<Order> getAll() {
+        init();
         List<Order> orders = new ArrayList<>();
         Statement statement = null;
         try  {statement = getStatement();

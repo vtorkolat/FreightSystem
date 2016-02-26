@@ -21,6 +21,7 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
 
     @Override
     public Route create(Route route) {
+        init();
         PreparedStatement ps = null;
         try { ps = getPreparedStatement(SQL_INSERT);
             ps.setInt(1, route.getId());
@@ -41,6 +42,7 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
 
     @Override
     public Route read(int id) {
+        init();
         Route route = new Route();
         PreparedStatement ps = null;
         try  {ps = getPreparedStatement(SQL_SELECT_BY_ID);
@@ -63,6 +65,7 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
 
     @Override
     public boolean update(Route route) {
+        init();
         PreparedStatement ps = null;
         try  {ps = getPreparedStatement(SQL_UPDATE_BY_ID);
             ps.setInt(1, route.getId());
@@ -81,6 +84,7 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
 
     @Override
     public boolean delete(Route route) {
+        init();
         PreparedStatement ps = null;
         try  {ps = getPreparedStatement(SQL_DELETE_BY_ID);
             ps.setInt(1, route.getId());
@@ -95,6 +99,7 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
 
     @Override
     public List<Route> getAll() {
+        init();
         List<Route> routs = new ArrayList<>();
         Statement statement=null;
         try  {statement = getStatement();
