@@ -99,14 +99,15 @@ public class RouteJdbcDao extends AbstractJdbcDao implements RouteDao {
 
     @Override
     public List<Route> getAll() {
-        init();
         List<Route> routs = new ArrayList<>();
+        Route route = new Route();
+        init();
         Statement statement=null;
         try  {statement = getStatement();
               ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
           
             while (rs.next()) {
-                Route route = new Route();
+
                 route.setId(rs.getInt("id"));
                 route.setLoadingAdress(rs.getString("loading_adress"));
                 route.setUnloadingAdress(rs.getString("unloading_adress"));

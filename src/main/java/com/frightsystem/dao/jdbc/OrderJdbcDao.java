@@ -46,12 +46,12 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
         PreparedStatement ps = null;
         try { ps = getPreparedStatement(SQL_SELECT_BY_ID);
             ps.setInt(1, id);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                order.setId(resultSet.getInt("id"));
-                order.setStatus(Status.fromString(resultSet.getString("status")));
-                order.setDescription(resultSet.getString("description"));
-                order.setPrice(resultSet.getFloat("price"));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                order.setId(rs.getInt("id"));
+                order.setStatus(Status.fromString(rs.getString("status")));
+                order.setDescription(rs.getString("description"));
+                order.setPrice(rs.getFloat("price"));
             }
 
         } catch (SQLException e) {
@@ -99,17 +99,16 @@ public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
     public List<Order> getAll() {
         init();
         List<Order> orders = new ArrayList<>();
+        Order order = new Order();
         Statement statement = null;
         try  {statement = getStatement();
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
 
-            while (resultSet.next()) {
-                Order order = new Order();
-                order.setId(resultSet.getInt("id"));
-                order.setStatus(Status.fromString(resultSet.getString("status")));
-                order.setDescription(resultSet.getString("description"));
-                order.setPrice(resultSet.getFloat("price"));
+            while (rs.next()) {
+                order.setId(rs.getInt("id"));
+                order.setStatus(Status.fromString(rs.getString("status")));
+                order.setDescription(rs.getString("description"));
+                order.setPrice(rs.getFloat("price"));
                 orders.add(order);
             }
         }catch (SQLException e) {

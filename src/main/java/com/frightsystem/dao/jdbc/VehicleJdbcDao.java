@@ -99,12 +99,13 @@ public class VehicleJdbcDao extends AbstractJdbcDao implements VehicleDao {
 
     @Override
     public List<Vehicle> getAll() {
-        init();
         List<Vehicle> vehicles = new ArrayList<>();
+        Vehicle vehicle = new Vehicle();
+        init();
         Statement statement = null;
         try  {statement = getStatement();
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
-            Vehicle vehicle = null;
+
             while (rs.next()) {
                 vehicle.setId(rs.getInt("id"));
                 vehicle.setModel(rs.getString("model"));

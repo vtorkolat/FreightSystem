@@ -9,6 +9,8 @@ import java.util.Map;
 public class Driver extends User{
 
     private String description;
+
+
     private String companyName;
     private ActivityField activityField;
     private String numberLicense;
@@ -19,6 +21,13 @@ public class Driver extends User{
         return description;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
     public void setDescription(String description) {
         this.description = description;
     }
@@ -53,5 +62,8 @@ public class Driver extends User{
 
     public void setVehicles(Map<String, Vehicle> vehicles) {
         this.vehicles = vehicles;
+    }
+
+    public void setVehicles(String vehicles) {
     }
 }

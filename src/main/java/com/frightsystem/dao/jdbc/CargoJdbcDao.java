@@ -103,15 +103,16 @@ public class CargoJdbcDao extends AbstractJdbcDao implements CargoDao {
 
     @Override
     public List<Cargo> getAll() {
-        init();
+       Cargo cargo = new Cargo();
         List<Cargo> cargos = new ArrayList<>();
+        init();
         Statement statement = null;
         try  {
             statement=getStatement();
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL);
 
             while (rs.next()) {
-                Cargo cargo = new Cargo();
+
                 cargo.setId(rs.getInt("id"));
                 cargo.setType(rs.getString("type"));
                 cargo.setDescription(rs.getString("descriprion"));
