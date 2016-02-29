@@ -13,6 +13,8 @@ public class Order  {
     private float price;
     private Map<String, Cargo> cargo = new HashMap<>();
     private Map<String, Route> route = new HashMap<>();
+    private int cargo_id;
+    private int route_id;
 
     public int getId() {
         return id;
@@ -61,5 +63,21 @@ public class Order  {
 
     public void setRoute(Map<String, Route> route) {
         this.route = route;
+    }
+
+    public int getCargo_id() {
+        return cargo_id;
+    }
+
+    public void setCargo_id(int cargo_id) {
+        this.cargo_id = cargo_id;
+    }
+
+    public int getRoute_id() {
+        return route_id;
+    }
+
+    public void setRoute_id(int route_id) {
+        this.route_id = route_id;
     }
 }

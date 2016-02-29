@@ -1,10 +1,17 @@
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\OrderDao.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\RouteDao.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\Command.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\jdbc\RouteJdbcDao.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\enumerations\ActivityField.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\CustomerDao.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\CommandFactory.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\jdbc\AbstractJdbcDao.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\impl\LandingPage.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\Route.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\impl\RegistrationPage.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\impl\EditProfilePage.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\servlets\StartPageServlet.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\impl\AdditionVehicle.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\CargoDao.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\Order.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\util\ConnectionProvider.java
@@ -13,6 +20,7 @@ D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\enum
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\Driver.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\DriverDao.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\User.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\impl\AdditionCargo.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\Cargo.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\enumerations\Status.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\VehicleDao.java
@@ -21,6 +29,9 @@ D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\exceptions
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\jdbc\OrderJdbcDao.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\jdbc\CargoJdbcDao.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\dao\jdbc\VehicleJdbcDao.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\main\Main.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\Vehicle.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\Customer.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\command\impl\impl\StartPage.java
 D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\model\enumerations\Role.java
+D:\JAVA\becomejavasenior\FreightSystem\src\main\java\com\frightsystem\exceptions\CloseStatementException.java

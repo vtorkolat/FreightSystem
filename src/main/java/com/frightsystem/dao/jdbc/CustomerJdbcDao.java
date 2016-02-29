@@ -21,13 +21,7 @@ public class CustomerJdbcDao extends AbstractJdbcDao implements CustomerDao {
     private static final String SQL_SELECT_ALL = "SELECT * FROM users WHERE role='customer'";
 
     private static final String DUPLICATE_USER_MSG = "User with name {0} already exists";
-    private static final String CREATE_USER_QUERY =
-            "INSERT INTO \"user\" (name, surname) " +
-                    "VALUES (?, ?)";
-    private static final String READ_USER_BY_ID_QUERY =
-            "SELECT * " +
-                    "FROM \"user\" " +
-                    "WHERE id = ?";
+
 
 
     @Override

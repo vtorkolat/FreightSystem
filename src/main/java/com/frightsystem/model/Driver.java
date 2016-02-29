@@ -16,6 +16,7 @@ public class Driver extends User{
     private String numberLicense;
     private Date licenseIssueDate;
     private Map<String, Vehicle> vehicles = new HashMap<>();
+    private int vehicle_id;
 
       public String getDescription() {
         return description;
@@ -65,5 +66,13 @@ public class Driver extends User{
     }
 
     public void setVehicles(String vehicles) {
+    }
+
+    public int getVehicle_id() {
+        return vehicle_id;
+    }
+
+    public void setVehicle_id(int vehicle_id) {
+        this.vehicle_id = vehicle_id;
     }
 }

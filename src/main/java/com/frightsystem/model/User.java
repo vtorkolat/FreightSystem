@@ -16,6 +16,7 @@ public class User {
     private Date dateOfBirth;
     private String skype;
     private short phoneNumder;
+    private int order_id;
 
 
 
@@ -98,5 +99,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 }
