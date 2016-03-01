@@ -31,7 +31,7 @@ public class AuthorizePage implements Command {
         String password = req.getParameter(PASSWORD_ATTR);
 
         if (username != null && password != null) {
-            User user = UserDao.getInstance().getUser(username); // Какой класс использовать вместо UserDao ?????
+            User user = new User(); // Какой класс использовать вместо UserDao ?????
 
             if (user != null && user.getPassword().equals(password)) {
                 return user;

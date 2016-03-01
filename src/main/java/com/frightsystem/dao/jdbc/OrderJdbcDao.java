@@ -12,7 +12,7 @@ import java.util.List;
 @Stateless
 public class OrderJdbcDao extends AbstractJdbcDao implements OrderDao {
 
-    private static final String SQL_INSERT = "INSERT INTO orders (id, status, description, price) VALUES (?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO orders (id, status, description, price,) VALUES (?,?,?,?)";
     private static final String SQL_SELECT_BY_ID = "SELECT * FROM orders WHERE id = ?";
     private static final String SQL_UPDATE_BY_ID = "UPDATE orders SET id = ?,status=?, description = ?, price=?";
     private static final String SQL_DELETE_BY_ID = "DELETE orders WHERE id = ?";
