@@ -5,6 +5,6 @@
     <title>"Система доставки грузов"</title>
 </head>
 <body>
-
+<form action="${pageContext.ServletContext.contextPath}"
 </body>
 </html>

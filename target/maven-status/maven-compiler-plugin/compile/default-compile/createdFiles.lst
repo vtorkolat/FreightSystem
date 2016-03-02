@@ -17,13 +17,20 @@ com\frightsystem\command\impl\impl\AdditionCargo.class
 com\frightsystem\command\impl\impl\EditProfilePage.class
 com\frightsystem\model\Cargo.class
 com\frightsystem\model\Vehicle.class
+com\frightsystem\command\impl\impl\AuthorizePage.class
+com\frightsystem\dao\UserDao.class
 com\frightsystem\dao\jdbc\OrderJdbcDao.class
 com\frightsystem\command\impl\impl\LandingPage.class
 com\frightsystem\dao\OrderDao.class
 com\frightsystem\model\enumerations\VehicleType.class
+com\frightsystem\dao\jdbc\UserJdbcDao.class
 com\frightsystem\dao\jdbc\RouteJdbcDao.class
 com\frightsystem\dao\RouteDao.class
+com\frightsystem\command\impl\enums\ContentType.class
+servlets\AuthorizePageServlet.class
 com\frightsystem\command\impl\Command.class
+servlets\LendingPageServlet.class
+com\frightsystem\filter\AuthorizationCheckerFilter.class
 com\frightsystem\dao\jdbc\CargoJdbcDao.class
 servlets\StartPageServlet.class
 com\frightsystem\command\impl\impl\AdditionVehicle.class
@@ -34,4 +41,6 @@ com\frightsystem\model\Order.class
 com\frightsystem\command\impl\CommandFactory.class
 com\frightsystem\exceptions\DuplicateUserException.class
 com\frightsystem\dao\jdbc\AbstractJdbcDao.class
+servlets\EditProfileServlet.class
+com\frightsystem\command\impl\enums\Page.class
 com\frightsystem\command\impl\impl\StartPage.class

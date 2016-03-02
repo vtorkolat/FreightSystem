@@ -1,6 +1,5 @@
 package servlets;
 
-import com.frightsystem.dao.jdbc.CustomerJdbcDao;
 import com.frightsystem.model.User;
 
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(value = "/authorize")
+@WebServlet(value = "/login")
 public class StartPageServlet  extends HttpServlet {
     private static final String USER_ATTR = "user";
     private static final String USERNAME_ATTR = "username";
@@ -42,7 +41,7 @@ public class StartPageServlet  extends HttpServlet {
         String password = req.getParameter(PASSWORD_ATTR);
 
         if (username != null && password != null) {
-            User user = CustomerJdbcDao.getInstance().getUser(username); // В какой класс мы делаем запрос?
+            User user = new User(); // В какой класс мы делаем запрос?
 
             if (user != null && user.getPassword().equals(password)) {
                 return user;

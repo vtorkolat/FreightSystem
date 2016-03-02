@@ -4,10 +4,11 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <context-param>
+   <!-- <context-param>
         <param-name>javax.faces.CONFIG_FILES</param-name>
         <param-value>/beans.xml</param-value>
-    </context-param>
+    </context-param>-->
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -17,4 +18,19 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MetroClient</servlet-name>
+        <servlet-class>metroclient.MetroClient</servlet-class>
+    </servlet>
+    - <servlet-mapping>
+    <servlet-name>MetroClient</servlet-name>
+    <url-pattern>/MetroClient</url-pattern>
+</servlet-mapping>
+    - <session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
+
+
+
 </web-app>
