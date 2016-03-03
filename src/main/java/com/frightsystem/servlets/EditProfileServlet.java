@@ -16,4 +16,14 @@ public class EditProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.service(req, resp);
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
 }
