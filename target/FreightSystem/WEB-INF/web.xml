@@ -20,12 +20,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>MetroClient</servlet-name>
-        <servlet-class>metroclient.MetroClient</servlet-class>
+        <servlet-name>LendingPageServlet</servlet-name>
+        <servlet-class>com.frightsystem.servlets.LendingPageServlet</servlet-class>
     </servlet>
     - <servlet-mapping>
-    <servlet-name>MetroClient</servlet-name>
-    <url-pattern>/MetroClient</url-pattern>
+    <servlet-name>LendingPageServlet</servlet-name>
+    <url-pattern>/easyfreight.ua</url-pattern>
 </servlet-mapping>
     - <session-config>
     <session-timeout>30</session-timeout>
